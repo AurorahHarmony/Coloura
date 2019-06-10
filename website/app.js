@@ -1,19 +1,19 @@
 //Browser Compatibility check
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-if (!isChrome){
+if (!isChrome) {
     alert('This browser is not supported. Please use an up to date version of Chrome');
 }
 
 //Define Constants
 const voiceInput = document.querySelector('#voiceInput');
-const speechOutput = document.querySelector('h1');
+const speechOutput = document.querySelector('h3');
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var recognition = new SpeechRecognition();
 
 
 recognition.onstart = () => {
-    console.log ('Voice activated. You can speak');
+    console.log('Voice activated. You can speak');
 }
 
 recognition.onresult = (e) => {
@@ -31,7 +31,7 @@ voiceInput.addEventListener('click', () => {
 //Init Voices
 speechSynthesis.getVoices();
 
-function readOutLoud(message){
+function readOutLoud(message) {
     const voices = speechSynthesis.getVoices();
     const speech = new SpeechSynthesisUtterance();
     speech.volume = 1;
@@ -45,18 +45,31 @@ function readOutLoud(message){
 
 function messageHandler(message) {
     let text = 'Background set to ';
-    
-    //Blues
-    if (message.includes(x = 'blue') || message.includes(x = 'Cerulean') || message.includes(x = 'azure')){
-        message = text + x;
-        setBg('blue')
 
-    } 
-    //Greens
-    else if (message.includes(x = 'green')){
+    //Blues
+    if (message.includes(x = 'blue') || message.includes(x = 'Cerulean') || message.includes(x = 'azure')) {
         message = text + x;
-        setBg('green');
+        setBg('#4988ed');
+
+    }
+    //Greens
+    else if (message.includes(x = 'green') || message.includes(x = 'tree') ) {
+        message = text + x;
+        setBg('#4cce77');
     } 
+    else if (message.includes(x = 'khaki') || message.includes(x = 'dark green')) {
+        message = text + x;
+        setBg('#005110');
+    }
+    //Reds
+    else if (message.includes(x = 'red')) {
+        message = text + x;
+        setBg('#ba0707');
+    }
+     else if (message.includes(x = 'pink') || message.includes(x = 'rose')) {
+        message = text + x;
+        setBg('#ff8989');
+    }
     //Unrecognized
     else {
         message = 'I don\'t recognize that colour';
@@ -64,6 +77,6 @@ function messageHandler(message) {
     return message;
 }
 
-function setBg(colour){
+function setBg(colour) {
     document.querySelector('body').style.background = colour;
 }
