@@ -34,11 +34,36 @@ speechSynthesis.getVoices();
 function readOutLoud(message){
     const voices = speechSynthesis.getVoices();
     const speech = new SpeechSynthesisUtterance();
-    speech.text = message;
     speech.volume = 1;
     speech.rate = 1;
     speech.pitch = 1;
     speech.voice = voices[5];
+    speech.text = messageHandler(message);
 
     window.speechSynthesis.speak(speech);
+}
+
+function messageHandler(message) {
+    let text = 'Background set to ';
+    
+    //Blues
+    if (message.includes(x = 'blue') || message.includes(x = 'Cerulean') || message.includes(x = 'azure')){
+        message = text + x;
+        setBg('blue')
+
+    } 
+    //Greens
+    else if (message.includes(x = 'green')){
+        message = text + x;
+        setBg('green');
+    } 
+    //Unrecognized
+    else {
+        message = 'I don\'t recognize that colour';
+    }
+    return message;
+}
+
+function setBg(colour){
+    document.querySelector('body').style.background = colour;
 }
