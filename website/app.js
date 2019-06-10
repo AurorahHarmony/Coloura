@@ -1,15 +1,14 @@
-//Check browser Support
-// try {
-//     var compatibilityCheck = window.speechRecognition || window.webkitSpeechRecognition;
-// } catch (e) {
-//     alert('Unsupported Browser! Please try the lasest version of Firefox or Chrome! (' + e + ')');
-// }
+//Browser Compatibility check
+var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+if (!isChrome){
+    alert('This browser is not supported. Please use an up to date version of Chrome');
+}
 
 //Define Constants
 const voiceInput = document.querySelector('#voiceInput');
 const speechOutput = document.querySelector('h1');
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var recognition = new SpeechRecognition();
 
 
