@@ -29,6 +29,9 @@ voiceInput.addEventListener('click', () => {
     recognition.start();
 });
 
+//Init Voices
+speechSynthesis.getVoices();
+
 function readOutLoud(message){
     const voices = speechSynthesis.getVoices();
     const speech = new SpeechSynthesisUtterance();
